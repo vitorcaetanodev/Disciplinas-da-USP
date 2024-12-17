@@ -1,0 +1,530 @@
+#N canvas 236 22 864 695 10;
+#X text 10 6 TECNOLOGIA MUSICAL;
+#X text 11 29 MÈtodos de SÌntese: SÌntese FM;
+#X obj 68 197 hsl 256 15 0 10000 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 28 131 nbx 5 14 1e-05 20000 0 0 \$0-f2 empty empty 0 -8 0 10
+-262144 -1 -1 440 256;
+#X obj 65 215 nbx 5 14 0 20000 0 0 \$0-f1 empty empty 0 -8 0 10 -262144
+-1 -1 0 256;
+#X obj 126 246 hsl 256 15 0 1000 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 123 266 nbx 5 14 0 10000 0 0 \$0-a1 empty empty 0 -8 0 10 -262144
+-1 -1 0 256;
+#X obj 492 312 tabwrite~ Sinal;
+#X obj 492 267 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 28 635 dac~;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array Sinal 200 float 3;
+#A 0 -0.584521 -0.521271 -0.456755 -0.391646 -0.326542 -0.26191 -0.198136
+-0.135522 -0.0742862 -0.0145941 0.0434521 0.0997933 0.154408 0.207306
+0.258521 0.308086 0.356073 0.402519 0.4475 0.491037 0.533183 0.57394
+0.613306 0.651243 0.687693 0.722535 0.75565 0.786849 0.815898 0.842521
+0.866398 0.887116 0.904275 0.917361 0.925826 0.929097 0.926578 0.917578
+0.901466 0.877564 0.845277 0.804004 0.753281 0.692711 0.622117 0.541469
+0.451004 0.351233 0.242993 0.127477 0.00625715 -0.118694 -0.245014
+-0.369957 -0.490455 -0.60316 -0.704564 -0.791079 -0.85919 -0.905656
+-0.927639 -0.922892 -0.889955 -0.828297 -0.738486 -0.622239 -0.482515
+-0.323478 -0.150377 0.0305484 0.212353 0.387653 0.548963 0.689115 0.801562
+0.880841 0.922855 0.925149 0.887101 0.810002 0.697036 0.553132 0.384726
+0.199454 0.00571123 -0.187772 -0.372389 -0.540099 -0.683823 -0.797781
+-0.877706 -0.921043 -0.926942 -0.896249 -0.831322 -0.735855 -0.614611
+-0.473076 -0.31723 -0.153169 0.013141 0.176114 0.330745 0.472747 0.598669
+0.705884 0.79268 0.85814 0.902075 0.925005 0.927983 0.912456 0.880274
+0.833453 0.774133 0.704498 0.626672 0.542711 0.454494 0.363752 0.272006
+0.180583 0.0906002 0.00298451 -0.0815233 -0.162353 -0.239091 -0.311452
+-0.379265 -0.442461 -0.501051 -0.555106 -0.604736 -0.650101 -0.691365
+-0.728728 -0.762379 -0.792506 -0.819293 -0.842873 -0.863434 -0.881068
+-0.895895 -0.907959 -0.917339 -0.923988 -0.927944 -0.929107 -0.927432
+-0.922754 -0.914964 -0.903869 -0.889242 -0.870858 -0.848445 -0.821741
+-0.790468 -0.754302 -0.712971 -0.666211 -0.613767 -0.555452 -0.491133
+-0.420771 -0.344425 -0.262275 -0.174679 -0.0821556 0.0145707 0.114553
+0.216602 0.319283 0.420911 0.519551 0.613048 0.699052 0.775081 0.838579
+0.886995 0.917905 0.929106 0.918764 0.885513 0.828604 0.748067 0.644745
+0.520424 0.37785 0.220721 0.0536667 -0.11791 -0.287978 -0.450113 -0.597775
+-0.724598 -0.824768 -0.893286 -0.92638 -0.921668 -0.878443;
+#X coords 0 1 200 -1 330 150 1 0 0;
+#X restore 445 93 graph;
+#X obj 89 419 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 3300 1;
+#X obj 86 439 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0.259843 256;
+#X obj 31 113 hsl 256 15 0 5000 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 2244 1;
+#X msg 68 78 40;
+#X msg 28 78 440;
+#X obj 767 361 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 444 262 r~ a;
+#X text 660 359 Espectro (on/off);
+#X obj 38 546 s~ a;
+#X floatatom 605 362 5 0 0 0 - - -;
+#X text 307 213 10kHz;
+#X text 366 261 1kHz;
+#N canvas 606 303 460 348 OSC_mod 0;
+#X obj -28 23 inlet;
+#X obj 58 251 outlet~;
+#X obj -56 79 osc~;
+#X obj 79 22 inlet;
+#X obj 58 220 *~ 0;
+#X text 176 129 se f=0 garante que n√£o haja;
+#X text 177 144 sinal na sa√≠da do oscilador;
+#X text 151 112 <-- condicionador:;
+#X obj -24 105 cnv 15 170 80 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X floatatom 11 141 5 0 0 0 - - -;
+#X obj -7 116 expr if ($f1 == 0 \, 0 \, 1);
+#X obj -22 161 *~;
+#X text 99 221 <-- aplica a amplitude ao sinal;
+#X obj 11 21 cnv 15 63 43 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X text 12 21 freq;
+#X text 52 20 amp;
+#X text 34 42 OSC;
+#X obj 152 54 r \$0-resetfases;
+#X connect 0 0 2 0;
+#X connect 0 0 10 0;
+#X connect 2 0 11 0;
+#X connect 3 0 4 1;
+#X connect 4 0 1 0;
+#X connect 10 0 9 0;
+#X connect 10 0 11 1;
+#X connect 11 0 4 0;
+#X connect 17 0 2 1;
+#X coords 0 -1 1 1 65 45 2 10 20;
+#X restore 65 303 pd OSC_mod;
+#X obj 28 150 sig~;
+#N canvas 761 369 450 300 reset-fases 0;
+#X floatatom 119 120 5 0 0 0 - - -;
+#X text 101 101 reset fases;
+#X obj 118 164 s \$0-resetfases;
+#X connect 0 0 2 0;
+#X coords 0 -1 1 1 72 40 2 100 100;
+#X restore 705 309 pd reset-fases;
+#N canvas 628 285 460 348 OSC_mod 0;
+#X obj 58 321 outlet~;
+#X obj -56 79 osc~;
+#X obj 79 22 inlet;
+#X obj 58 290 *~ 0;
+#X text 176 199 se f=0 garante que n√£o haja;
+#X text 177 214 sinal na sa√≠da do oscilador;
+#X text 151 182 <-- condicionador:;
+#X obj -24 175 cnv 15 170 80 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X floatatom 11 211 5 0 0 0 - - -;
+#X obj -22 231 *~;
+#X text 99 291 <-- aplica a amplitude ao sinal;
+#X obj 11 21 cnv 15 63 43 empty empty empty 20 12 0 14 -203904 -66577
+0;
+#X text 12 21 freq;
+#X text 52 20 amp;
+#X text 34 42 OSC;
+#X obj 138 54 r \$0-resetfases;
+#X obj -33 21 inlet~;
+#X obj -7 185 expr if ($f1 == 0 \, 0 \, 1);
+#X obj -7 155 snapshot~;
+#X obj -1 108 loadbang;
+#X obj -1 132 metro 200;
+#X obj 55 109 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X connect 1 0 9 0;
+#X connect 2 0 3 1;
+#X connect 3 0 0 0;
+#X connect 9 0 3 0;
+#X connect 15 0 1 1;
+#X connect 16 0 1 0;
+#X connect 16 0 18 0;
+#X connect 17 0 8 0;
+#X connect 17 0 9 1;
+#X connect 18 0 17 0;
+#X connect 19 0 20 0;
+#X connect 20 0 18 0;
+#X connect 21 0 20 0;
+#X coords 0 -1 1 1 65 45 2 10 20;
+#X restore 28 472 pd OSC_mod;
+#X text 139 318 <-- Osc. Moduladora;
+#X text 103 487 <-- Osc. Portadora;
+#X text 52 284 f1;
+#X text 109 286 a1;
+#X text 71 455 a2;
+#X text 13 371 f2;
+#X text 63 359 <-- sinal modulador;
+#X obj 492 289 metro 100;
+#X text 74 545 <-- sinal FM = a2*OSC[f2 + a1*OSC(f1)];
+#N canvas 143 62 419 362 voluminho 0;
+#X obj 105 106 hsl 80 15 0.001 3 1 0 empty empty empty -2 -8 0 10 -228856
+-1 -1 6816 1;
+#X obj 81 67 inlet~;
+#X obj 81 323 outlet~;
+#X obj 102 237 pack 0 10;
+#X text 134 105 vol;
+#X obj 168 125 bng 12 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 217 66 1;
+#X text 156 123 1;
+#X obj 81 297 *~ 0;
+#X obj 102 260 line;
+#X obj 102 150 moses 0.0011;
+#X msg 102 215 0;
+#X obj 102 125 tgl 12 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 13 181 f;
+#X obj -26 130 moses 1;
+#X obj -26 105 f;
+#X obj -26 155 t b;
+#X floatatom 113 297 5 0 0 0 - - -;
+#X obj 171 215 spigot;
+#X obj 13 155 delay 10;
+#X text 115 122 on/off;
+#X connect 0 0 10 0;
+#X connect 0 0 13 1;
+#X connect 1 0 8 0;
+#X connect 3 0 9 0;
+#X connect 5 0 6 0;
+#X connect 6 0 0 0;
+#X connect 8 0 2 0;
+#X connect 9 0 8 1;
+#X connect 9 0 17 0;
+#X connect 10 0 11 0;
+#X connect 10 1 18 0;
+#X connect 11 0 3 0;
+#X connect 12 0 15 0;
+#X connect 13 0 0 0;
+#X connect 14 0 16 0;
+#X connect 14 1 19 0;
+#X connect 15 0 14 0;
+#X connect 15 0 18 1;
+#X connect 16 0 11 0;
+#X connect 18 0 3 0;
+#X connect 19 0 13 0;
+#X coords 0 -1 1 1 90 40 2 100 100;
+#X restore 28 587 pd voluminho;
+#X text 453 360 Espectro (logaritmico);
+#N canvas 747 334 450 300 reset-fases 0;
+#X floatatom 120 120 5 0 0 0 - - -;
+#X text 102 101 I=ka1.f2/f1;
+#X obj 246 85 *;
+#X obj 257 136 *;
+#X floatatom 220 38 5 0 0 0 - #0-a1 -;
+#X floatatom 291 58 5 0 0 0 - - -;
+#X floatatom 280 111 5 0 0 0 - #0-f2 -;
+#X obj 265 178 /;
+#X floatatom 300 156 5 0 0 0 - #0-f1 -;
+#X floatatom 265 212 5 0 0 0 - - -;
+#X text 291 38 k;
+#X text 219 19 a1;
+#X text 290 95 f2;
+#X text 308 139 f1;
+#X text 302 210 I;
+#X msg 313 32 0.1;
+#X obj 313 12 loadbang;
+#X obj 346 130 t b b;
+#X floatatom 220 62 5 0 0 0 - - -;
+#X obj 350 180 t b b;
+#X connect 2 0 3 0;
+#X connect 3 0 7 0;
+#X connect 4 0 18 0;
+#X connect 5 0 2 1;
+#X connect 6 0 3 1;
+#X connect 6 0 17 0;
+#X connect 7 0 9 0;
+#X connect 8 0 7 1;
+#X connect 8 0 19 0;
+#X connect 9 0 0 0;
+#X connect 15 0 5 0;
+#X connect 16 0 15 0;
+#X connect 17 0 18 0;
+#X connect 18 0 2 0;
+#X connect 19 0 18 0;
+#X coords 0 -1 1 1 72 40 2 100 100;
+#X restore 442 17 pd reset-fases;
+#X text 525 15 √çndice de Modula√ß√£o;
+#X text 271 128 5kHz;
+#X text 651 15 (k=0.1);
+#X text 548 35 (qto. maior I \, maior o no. bandas laterais);
+#X text 55 390 <-- somador [f2 + a1.OSC(f1)];
+#X text 88 131 Frequencia da portadora (f2);
+#X text 184 266 Amplitude de modulaÁ„o (a1);
+#X text 126 216 FrequÍncia de modulaÁ„o (f1);
+#X text 147 439 Amplitude da saÌda do osc. portadora (a2);
+#X obj 28 392 +~;
+#X text 143 583 A raz√£o de modula√ß√£o f2/f1 \, que determina a largura
+das bandas laterais \, e portanto o espalhamento dos sobretons;
+#X text 144 623 A amplitude de modula√ß√£o a1 \, que controla a intensidade
+dos sobretons nas bandas laterais;
+#X text 514 583 No espectro observe o aparecimento de bandas laterais
+ladeando a frequencia da portadora.;
+#N canvas 486 86 477 411 spectrum~ 0;
+#N canvas 143 51 872 789 FFT_Analyse 0;
+#X obj 101 102 inlet~;
+#X obj 101 332 *~;
+#X obj 132 331 *~;
+#X obj 110 356 +~;
+#X obj 111 377 powtodb~;
+#N canvas 0 22 346 535 init_input_window 0;
+#X obj 73 217 / 10;
+#X obj 55 278 line 0 0.1;
+#X msg 119 246 0;
+#X obj 54 176 t f f b;
+#X obj 54 239 pack;
+#X obj 55 301 t f f;
+#X obj 54 152 - 1;
+#X obj 74 114 t f f;
+#X obj 55 359 * 3.14159;
+#X obj 55 381 sin;
+#X msg 55 401 \$1 \$1;
+#X obj 55 423 *;
+#X text 119 334 0...0.99;
+#X text 128 359 0...pi;
+#X text 79 423 hanning;
+#X msg 55 88 4096;
+#X obj 100 88 f 4096;
+#X obj 99 60 bng 15 250 50 0 empty empty empty 0 -6 0 8 -262144 -1
+-1;
+#X obj 99 39 loadbang;
+#X obj 74 333 / 4096;
+#X obj 55 448 tabwrite \$0-window;
+#X text 86 381 half-sine;
+#X connect 0 0 4 1;
+#X connect 1 0 5 0;
+#X connect 2 0 1 0;
+#X connect 3 0 4 0;
+#X connect 3 1 0 0;
+#X connect 3 2 2 0;
+#X connect 4 0 1 0;
+#X connect 5 0 19 0;
+#X connect 5 1 20 1;
+#X connect 6 0 3 0;
+#X connect 7 0 6 0;
+#X connect 7 1 19 1;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 11 0;
+#X connect 11 0 20 0;
+#X connect 15 0 7 0;
+#X connect 16 0 7 0;
+#X connect 17 0 16 0;
+#X connect 18 0 17 0;
+#X connect 19 0 8 0;
+#X restore 161 276 pd init_input_window;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array \$0-lin_scope 2048 float 0;
+#X coords 0 100 2047 0 200 140 1;
+#X restore 110 596 graph;
+#N canvas 0 22 822 328 init_norm 0;
+#X obj 43 230 outlet;
+#X obj 43 187 - 100;
+#X floatatom 43 208 9 0 0 0 - - -;
+#X text 108 169 leistung -> techn. dB;
+#X msg 43 69 4096;
+#X obj 80 68 f 4096;
+#X obj 80 47 bng 15 250 50 0 empty empty empty 0 -6 0 8 -262144 -1
+-1;
+#X obj 80 26 loadbang;
+#X obj 43 167 rmstodb;
+#X obj 43 110 / 4;
+#X text 74 103 faktor 2 wegen hanning;
+#X text 74 114 weiterer faktor 2 \, weil wir nur die;
+#X text 73 124 erste haelfte des konjungiert komplexen spektrum sehen
+;
+#X text 108 135 bzw. bearbeiten \, somit nur die haelfte der spektralen
+energie;
+#X connect 1 0 2 0;
+#X connect 2 0 0 0;
+#X connect 4 0 9 0;
+#X connect 5 0 9 0;
+#X connect 6 0 5 0;
+#X connect 7 0 6 0;
+#X connect 8 0 1 0;
+#X connect 9 0 8 0;
+#X restore 126 401 pd init_norm;
+#X obj 100 231 *~;
+#X obj 110 425 -~ 60.206;
+#X obj 123 519 *~ 0.98;
+#X obj 110 541 +~;
+#X obj 111 475 *~ 0.02;
+#X msg 314 481 1 \$1;
+#X obj 314 502 -;
+#X obj 314 458 clip 0 1;
+#X obj 314 437 / 100;
+#X floatatom 314 413 5 0.5 100 0 - - -;
+#X obj 333 366 loadbang;
+#X obj 100 277 fft~;
+#X obj 463 557 line 0 0.1;
+#X obj 463 602 / 2;
+#X obj 463 622 mtof;
+#X msg 463 536 6 \, 273 26.7;
+#X obj 463 580 t f f;
+#X obj 494 602 - 6;
+#X obj 463 642 / 44100;
+#X obj 463 663 * 4096;
+#X msg 656 633 6;
+#X obj 656 653 / 2;
+#X obj 656 673 mtof;
+#X floatatom 656 693 9 0 0 0 - - -;
+#X text 723 694 Hz;
+#X obj 754 654 / 2;
+#X obj 754 673 mtof;
+#X floatatom 754 693 9 0 0 0 - - -;
+#X text 822 693 Hz;
+#X msg 754 634 273;
+#X obj 656 612 t b b;
+#X obj 463 516 metro 1000;
+#X obj 463 498 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 1
+1;
+#X obj 463 458 loadbang;
+#X msg 463 478 1;
+#X obj 656 592 loadbang;
+#X obj 468 245 loadbang;
+#X obj 703 102 inlet;
+#X obj 130 253 table \$0-window 4096;
+#X obj 137 214 tabreceive~ \$0-window;
+#X text 353 403 temporal lowpass;
+#X text 355 415 parameter between 0 .. 100 %;
+#X text 23 23 spectrum~;
+#X text 120 23 draws the power of a spectrum in a logarithmic scale
+;
+#X text 118 36 (by Thomas Musil);
+#X obj 123 498 tabreceive~ \$0-lin_scope;
+#X obj 110 566 tabsend~ \$0-lin_scope;
+#X obj 463 685 tabread4 \$0-lin_scope;
+#X obj 468 267 f \$0;
+#X text 553 536 transformation to log scale;
+#X msg 333 385 100;
+#X obj 314 341 max 0.5;
+#X obj 314 319 min 100;
+#X obj 440 107 inlet;
+#X text 96 81 audio sig;
+#X text 700 81 ON/OFF;
+#X text 427 86 (0 .. 100);
+#X text 408 72 temporal lowpass;
+#X obj 703 125 switch~ 4096 2;
+#X obj 533 244 bng 15 250 50 0 empty empty empty 0 -6 0 8 -262144 -1
+-1;
+#X obj 463 707 tabwrite \$0-s;
+#X msg 468 296 \; \$1-s xticks 0 12 2;
+#X msg 491 330 \; \$1-s yticks 0 5 2;
+#X connect 0 0 8 0;
+#X connect 1 0 3 0;
+#X connect 2 0 3 1;
+#X connect 3 0 4 0;
+#X connect 4 0 9 0;
+#X connect 7 0 9 1;
+#X connect 8 0 19 0;
+#X connect 9 0 12 0;
+#X connect 10 0 11 1;
+#X connect 11 0 54 0;
+#X connect 12 0 11 0;
+#X connect 13 0 14 0;
+#X connect 14 0 10 1;
+#X connect 15 0 13 0;
+#X connect 15 0 12 1;
+#X connect 16 0 15 0;
+#X connect 17 0 16 0;
+#X connect 18 0 58 0;
+#X connect 19 0 1 0;
+#X connect 19 0 1 1;
+#X connect 19 1 2 0;
+#X connect 19 1 2 1;
+#X connect 20 0 24 0;
+#X connect 21 0 22 0;
+#X connect 22 0 26 0;
+#X connect 23 0 20 0;
+#X connect 24 0 21 0;
+#X connect 24 1 25 0;
+#X connect 25 0 68 1;
+#X connect 26 0 27 0;
+#X connect 27 0 55 0;
+#X connect 28 0 29 0;
+#X connect 29 0 30 0;
+#X connect 30 0 31 0;
+#X connect 33 0 34 0;
+#X connect 34 0 35 0;
+#X connect 37 0 33 0;
+#X connect 38 0 28 0;
+#X connect 38 1 37 0;
+#X connect 39 0 23 0;
+#X connect 40 0 39 0;
+#X connect 41 0 42 0;
+#X connect 42 0 40 0;
+#X connect 43 0 38 0;
+#X connect 44 0 56 0;
+#X connect 45 0 66 0;
+#X connect 47 0 8 1;
+#X connect 53 0 10 0;
+#X connect 55 0 68 0;
+#X connect 56 0 69 0;
+#X connect 56 0 70 0;
+#X connect 58 0 17 0;
+#X connect 59 0 17 0;
+#X connect 60 0 59 0;
+#X connect 61 0 60 0;
+#X connect 67 0 56 0;
+#X restore 27 314 pd FFT_Analyse;
+#X text 25 205 spectrum~.pd;
+#X obj 73 259 inlet;
+#X obj 27 259 inlet~;
+#X obj 120 259 inlet;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array \$0-s 268 float 0;
+#X coords 0 100 267 0 267 140 2 0 0;
+#X restore 31 16 graph;
+#X obj 305 31 cnv 15 1 1 empty empty -10 0 0 0 10 -262144 -1 0;
+#X obj 305 143 cnv 15 1 1 empty empty -90 0 0 0 10 -262144 -1 0;
+#X obj 305 87 cnv 15 1 1 empty empty -50 0 0 0 10 -262144 -1 0;
+#X obj 305 59 cnv 15 1 1 empty empty -30 0 0 0 10 -262144 -1 0;
+#X obj 305 115 cnv 15 1 1 empty empty -70 0 0 0 10 -262144 -1 0;
+#X obj 26 160 cnv 15 1 1 empty empty 10 0 5 0 10 -262144 -1 0;
+#X obj 74 160 cnv 15 1 1 empty empty 40 0 5 0 10 -262144 -1 0;
+#X obj 123 160 cnv 15 1 1 empty empty 160 0 5 0 10 -262144 -1 0;
+#X obj 170 160 cnv 15 1 1 empty empty 640 0 5 0 10 -262144 -1 0;
+#X obj 218 160 cnv 15 1 1 empty empty 2k56 0 5 0 10 -262144 -1 0;
+#X obj 266 160 cnv 15 1 1 empty empty 10k2 0 5 0 10 -262144 -1 0;
+#X obj 146 173 cnv 15 1 1 empty empty 320 0 5 0 10 -262144 -1 0;
+#X obj 290 173 cnv 15 1 1 empty empty 20k5 0 5 0 10 -262144 -1 0;
+#X obj 50 170 cnv 15 1 1 empty empty 20 0 9 0 10 -262144 -1 0;
+#X obj 98 173 cnv 15 1 1 empty empty 80 0 5 0 10 -262144 -1 0;
+#X obj 194 173 cnv 15 1 1 empty empty 1k28 0 5 0 10 -262144 -1 0;
+#X obj 242 173 cnv 15 1 1 empty empty 5k12 0 5 0 10 -262144 -1 0;
+#X obj 54 157 cnv 15 1 1 empty empty | 0 7 0 10 -262144 -1 0;
+#X obj 102 157 cnv 15 1 1 empty empty | 0 7 0 10 -262144 -1 0;
+#X obj 150 157 cnv 15 1 1 empty empty | 0 7 0 10 -262144 -1 0;
+#X obj 198 157 cnv 15 1 1 empty empty | 0 7 0 10 -262144 -1 0;
+#X obj 246 157 cnv 15 1 1 empty empty | 0 7 0 10 -262144 -1 0;
+#X obj 294 157 cnv 15 1 1 empty empty | 0 7 0 10 -262144 -1 0;
+#X text 26 230 draws the power of the spectrum (log);
+#X obj 220 285 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 264 220 5 0 0 0 - - -;
+#X connect 2 0 0 1;
+#X connect 3 0 0 0;
+#X connect 4 0 0 2;
+#X connect 30 0 0 2;
+#X connect 31 0 0 1;
+#X coords 0 0 1 1 330 190 2 0 0;
+#X restore 444 382 pd spectrum~;
+#X text 646 666 tecmus.v2(2015)@LATM-DM/FFCLRP-USP;
+#X connect 2 0 4 0;
+#X connect 3 0 24 0;
+#X connect 4 0 23 0;
+#X connect 5 0 6 0;
+#X connect 6 0 23 1;
+#X connect 8 0 34 0;
+#X connect 11 0 12 0;
+#X connect 12 0 26 1;
+#X connect 13 0 3 0;
+#X connect 14 0 13 0;
+#X connect 15 0 13 0;
+#X connect 16 0 52 2;
+#X connect 17 0 7 0;
+#X connect 17 0 52 0;
+#X connect 20 0 52 1;
+#X connect 23 0 48 1;
+#X connect 24 0 48 0;
+#X connect 26 0 19 0;
+#X connect 26 0 36 0;
+#X connect 34 0 7 0;
+#X connect 36 0 9 0;
+#X connect 36 0 9 1;
+#X connect 48 0 26 0;

@@ -1,0 +1,106 @@
+\chapter{Números Primos}
+\label{cha:primos}
+
+Para gerar uma chave no sistema RSA precisamos gerar primos grandes e aleatórios.
+Para garantir que o número tera uma quantidade $n$ de bits sorteamos $p' \leftarrow \{0,1\}^{n-1}$ e acrescentar um bit $1$ à esquerda.
+Caso o número não seja primos repetimos o processo.
+
+Um importante resultado de Teoria dos Números chamado {\em Teorema dos Nùmeros Primos} estabelece que dado um número $n$ escolhido ao acaso, a chance de ele ser primo é $\frac{1}{ln(n)}$.
+Se estamos buscando um número menor que $n$, precisamos em média chutar $ln(n)$ números até encontrar um primo ou metade disso se ignorarmos os pares.
+Para cada tentativa, porém, precisamos verificar se o valor gerado é de fato primo.
+A forma ingênua -- verificar cada um dos possíveis divisores -- é inviável.
+Assim, precisamos utilizar algum método eficiente de verificação de primos.
+
+A ideia que seguiremos é de procurar {\em testemunhas} de que um número é composto.
+Por exemplo, o Teorema de Euller garante que para todo $a \in \mathbb{Z}_n^\star$ temos que $a^{\phi(n)} \equiv 1\ mod\ n$.
+No caso em que $n$ é primo sabemos que $\phi(n) = n - 1$ que todo inteiro positivo $a$ é inversível em $\mathbb{Z}_n$.
+Podemos então escolher $a \leftarrow \mathbb{Z}_n$ e fazer $a^{n-1}\ mod\ n$, se este valor for diferente de $1$ sabemos que $n$ não é primo.
+Ou seja $a$ é uma testemunha de que $n$ não é primo.
+
+Infelizmente existe uma infinidade de números compostos que não possuem esse tipo de testemunha.
+Seja então $n - 1 = 2^ru$, temos que se $n$ é primo então a sequência $a^u, a^{2u}, \dots, a^{2^ru}$ em algum momento começa a produzir apenas $1$s.
+Mais do que isso, com este teste todo número composto possui uma quantidade grande de testemunhas -- metade dos valores $a$ são testemunhas.
+Assim, se testarmos $t$ valores de $a$ diferentes e escolhidos de maneira aleatória, a chance de todos os testes acusarem de maneira falsa que $a$ não é composto é $2^{-t}$.
+
+Essa estratégia dá origem ao algoritmo de Miller-Rabin \cite{Miller75,Rabin80} que é o teste de primalidade mais usado hoje em dia:
+
+\begin{codebox}
+\Procname{$\proc{MillerRabin}(n, t)$}
+\li \Comment Recebe $n, t \in \mathbb{Z}$
+\li \Comment Devolve {\tt composto} se $n$ é composto
+\li \Comment Devolve {\tt primo} se $n$ é primo com probabilidade $1 - 2^{-t}$
+\li \If $n$ for par
+\li   \Then \Return {\tt composto}
+    \End
+\li \If \proc{EhPotenciaPerfeita}(n)
+%$n = n'^e$ para algum $n'$ e algum $e$
+\li   \Then \Return {\tt composto}
+    \End
+\li  Calcule $r$ e $u$ tais que $n-1 = 2^ru$
+\li \For $j = 1$ \To $t$
+\li   \Do sorteia $a$ em $\{1, \dots, n-1\}$ 
+\li   \For $i = 1$ \To $r-1$
+\li     \Do \If $a^u \neq \pm 1\ mod\ n$ e $a^{2^iu} \neq -1\ mod\ n$
+\li         \Then \Return {\tt composto}
+            \End
+      \End
+    \End
+\li \Return {\tt primo}
+\end{codebox}
+
+% Daqui para baixo ainda não está bom
+
+Para mostrar que o algoritmo de Miller-Rabin é correto precisamos mostrar que pelo menos metade dos elementos em $\mathbb{Z}_n$ são testemunhas de que $n$ é primo.
+Para tanto precisamos provar alguns resultados preliminares.
+
+
+\begin{lemma}
+  Se $H \subseteq G$ e $H$ é fechado então $H$ é um subgrupo de $G$. 
+\end{lemma}
+\begin{proof}
+  Associatividade segue do fato de $H \subseteq G$ a existência de inverso e da identidade seguem do fecho.
+\end{proof}
+
+\begin{lemma}
+Seja $H$ um subgrupo de $G$ tal que $H \neq G$, então $|H| \leq \frac{|G|}{2}$  
+\end{lemma}
+\begin{proof}
+Como $H \neq G$ então existe $g \in G$ tal que $g \notin H$.
+Considere o conjunto $\bar{H} := \{gh : h \in H\}$.
+
+Se $gh_1 = gh_2$ então $h_1 = h_2$ (basta multiplicar os dois lados por $g^{-1}$), portanto, cada elemento distinto de $H$ corresponde a um elemento distinto em $\bar{H}$.
+Ou seja, $|H| = |\bar{H}|$.
+
+Agora suponha que $gh \in H$ para algum $h$.
+Neste caso $gh = h'$ para algum $h' \in H$ e, portanto, $g = h'h^{-1}$.
+Como $h', h^{-1} \in H$ e como $H$ é um grupo então $g \in H$, mas isso contradiz a definição de $g$ e portanto não existe $gh \in H$ para nenhum $h$.
+Em outras palavras $\bar{H} \cap H = \emptyset$.
+
+Juntando tudo temos que $H \subseteq G$ e $\bar{H} \subseteq G$ e, portanto, $|G| \geq |H| + |\bar{H}|$.
+Como $|H| = |\bar{H}|$, concluimos que   $|G| \geq 2|H|$.
+\end{proof}
+
+Seja $i \in \{0, \dots r-1\}$ o maior inteiro tal que existe $a$ que não é testemunha e $a^{2^iu} \equiv -1\ mod\ n$.
+Note que $i$ deve existir, pois $-1$ não é testemunha e $(-1)^{2^0u} \equiv -1\ mod\ n$ 
+Vamos agora construir um conjunto $B$ que é um subgrupo de $\mathbb{Z}_n^\star$ e que $B \neq \mathbb{Z}_n^\star$:
+
+\begin{displaymath}
+  B := \{a : a^{2^iu} \equiv \pm 1\ mod\ n\}
+\end{displaymath}
+
+Seja $a$ um elemento que não é testemunha de que $n$ é primo i.e. $a^u \equiv 1\ mod\ n$ ou $a^{2^ju} \equiv -1\ mod\ n$ para algum $j \in \{0, \dots, r-1\}$.
+No primeiro caso $a \in B$.
+No segundo caso $j \leq i$.
+Se $i =j$ então $a \in B$, caso contrário, $a^{2^iu} \equiv (2^{2^ju})^{2^{i-j}} \equiv 1\ mod\ n$ e temos que $a \in B$.
+Concluímos que todo elemento que não é testemunha pertence a $B$.
+
+Resta mostrar que $B$ é um subgrupo de $\mathbb{Z}_n^\star$ e que $B \neq \mathbb{Z}_n^\star$.
+Para o primeiro basta notar que para quaisquer $a,b \in B$ temos que $a \cdot b \equiv (\pm 1)(\pm 1) \equiv \pm 1\ mod\ n$.
+A demostração de que $B \neq \mathbb{Z}_n^\star$ é mais complicada e será omitida.
+
+
+
+% concluimos que existem no máximo n/2 elementos de Z_n^* não são testemunhas de que n é primo
+% provar a correção do algoritmo de Miller-Rabin
+
+% mostrar o algoritmo EhPotenciaPerfeita e sua complexidade

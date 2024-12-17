@@ -1,0 +1,68 @@
+\documentclass[a4,12pt]{book}
+\usepackage[portuguese]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{clrscode}
+\usepackage{tikz}
+\usepackage[hidelinks]{hyperref}
+\usepackage{multicol}
+
+\newtheorem{example}{Exemplo}
+\newtheorem{exercicio}{Exercício}
+\newtheorem{definition}{Definição}
+\newtheorem{theorem}{Teorema}
+\newtheorem{proposition}{Proposição}
+\newtheorem{corollary}{Corolário}
+\newtheorem{lemma}{Lema}
+
+\newcommand{\xor}{\oplus}
+
+\begin{document}
+
+\bibliographystyle{alpha}
+
+\author{Márcio Moretto Ribeiro}
+
+\title{Segurança da Informação}
+
+\maketitle
+
+\tableofcontents
+
+% lembrar de colocar em cada um dos algoritmos qual é sua entrada e qual é sua saída!!!
+
+\include{apresentacao}
+\include{intro}
+\include{cifras-classicas}
+%\include{criptoanalise}
+%\include{sigilo-perfeito}
+\include{criptografia-moderna}
+\include{cifras-fluxo}
+\include{cifras-bloco}
+\include{mac}
+\include{hash}
+\include{distribuicao-chaves}
+\include{criptografia-assimetrica}
+\include{assinaturas-digitais}
+
+\appendix
+\include{corpos-finitos}
+\include{owf}
+% \include{primos}
+\include{sistemas-hibridos}
+\include{ciclicos}
+\include{dsa}
+\include{protocolos}
+%\include{privacidade-diferencial}
+%\include{blockchain}
+
+\bibliography{ref}
+\end{document}
+
+% coisas que ficaram de fora
+  % fatoração
+  % teste de primalidade
+  % criptoanálise diferencial
+  % Zero knownledge proof of knowledge
+% Ideia: OWF e mais esses 4 temas em curso de pós
